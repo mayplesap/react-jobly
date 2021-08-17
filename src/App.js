@@ -4,10 +4,13 @@ import Navbar from './Navbar';
 import './App.css';
 
 function App() {
+
+  //TODO: eventually have authentication in here
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar isUser={true}/>
         <Routes />
       </BrowserRouter>
     </div>

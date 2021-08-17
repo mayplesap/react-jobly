@@ -16,32 +16,40 @@ import { NavLink } from "react-router-dom";
  * 
  * App -> Navbar
  */
-function Navbar(){
+function Navbar({ isUser }) {
   return (
     <nav className="Navbar">
       <NavLink exact to="/">
         Jobly
       </NavLink>
-      <NavLink exact to="/companies">
-        Companies
-      </NavLink>
-      <NavLink exact to="/jobs">
-        Jobs
-      </NavLink>
-      <NavLink exact to="/profile">
-        Profile
-      </NavLink>
-      <NavLink exact to="logout">
-        Log out
-      </NavLink>
-
-
-      <NavLink exact to="/login">
-        Login
-      </NavLink>
-      <NavLink exact to="/signup">
-        Signup
-      </NavLink>
+      {(isUser) ?
+        (
+          <div>
+            <NavLink exact to="/companies">
+              Companies
+            </NavLink>
+            <NavLink exact to="/jobs">
+              Jobs
+            </NavLink>
+            <NavLink exact to="/profile">
+              Profile
+            </NavLink>
+            <NavLink exact to="logout">
+              Log out
+            </NavLink>
+          </div>
+        )
+        : (
+          <div>
+            <NavLink exact to="/login">
+              Login
+            </NavLink>
+            <NavLink exact to="/signup">
+              Signup
+            </NavLink>
+          </div>
+        )
+      }
     </nav>
   )
 }

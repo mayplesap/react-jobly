@@ -12,7 +12,7 @@ import ProfileForm from './ProfileForm';
  * App -> Routes
  */
 
-function Routes(){
+function Routes({list, company}){
   return (
     <Switch>
       <Route exact path="/login">
@@ -25,13 +25,13 @@ function Routes(){
         <ProfileForm />
       </Route>
       <Route exact path="/companies">
-        <Jobly list={ list } listType="companies"/>
+        <Jobly listType="companies"/>
       </Route>
       <Route exact path="/companies/:company">
-        <CompanyDetail company={ company }/>
+        <CompanyDetail />
       </Route>
       <Route exact path="/jobs">
-        <Jobly list={ list } listType="jobs"/>
+        <Jobly listType="jobs"/>
       </Route>
       <Route exact path="/">
         <Homepage />
