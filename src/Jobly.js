@@ -9,9 +9,11 @@ import { useState, useEffect } from "react";
  */
 function Jobly({ listType }) {
   const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("")
 
-  async function updateList() {
-    setList(()=>(list))
+  function updateSearchTerm(word){
+    setSearchTerm(word);
   }
 
   async function getCompanies(){
@@ -31,18 +33,27 @@ function Jobly({ listType }) {
         newList = await getJobs();
       }
       setList(newList);
+      setIsLoading(false);
     }
     callApi();
   }, [listType])
 
-  
+  useEffect(function updateListWhenSearch(){
+    async function updateList() {
+      let newList = await JoblyApi.getCompanies({ name: searchTerm });
+      setList( newList );
+    }
+    updateList();
+  },[searchTerm])
+
+  if(isLoading) return <p>Loading...</p>
 
   return (
     <div>
-      <SearchForm searchFunction={updateList} />
+      <SearchForm handleSearch={updateSearchTerm} />
       {listType === "companies"
         ? <CompanyList companies={list} />
-        : null
+        : <JobList jobs={list} />
       }
     </div>
   )

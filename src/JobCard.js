@@ -6,7 +6,7 @@ import React from "react";
  * JobList -> JobCard
  */
 function JobCard({ job, handleSave, isApplied }) {
-  let currUser = ...;//TODO:
+  // let currUser = ...;//TODO:
 
   return (
     <div>
@@ -14,13 +14,12 @@ function JobCard({ job, handleSave, isApplied }) {
       <h4>{job.handle}</h4>
       <p>Salary: {job.salay}</p>
       <p>Equity: {job.equity}</p>
-      {job in currUser.jobs
+      {/* {job in currUser.jobs
         ?
         <button disabled>Applied</button>
         :
         <button onClick={handleSave}>Apply</button>
-
-      }
+      } */}
     </div>
   )
 }
