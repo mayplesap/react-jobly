@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-function SignupForm({searchFunction}){
-
+/** ProfileForm
+ * 
+ * TODO: handleSave & alert
+ * Routes -> ProfileForm
+ */
+function ProfileForm({ handleSave, currentUser}){
   const [formData, setFormData] = useState({});
 
   function handleChange(evt){
@@ -16,13 +20,35 @@ function SignupForm({searchFunction}){
 
   function handleSubmit(evt){
     evt.preventDefault();
+    handleSave(formData);
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <label>Username</label>
+      <p>{currentUser.username}</p>
+      <label for="firstName">First Name</label>
       <input
-        name="search"
-        placeholder="Enter Search Term..."
+        name="firstName"
+        value="{currentUser.firstName}"
+        onChange={handleChange}
+        />
+      <label for="lastName">Last Name</label>
+      <input
+        name="lastName"
+        value="{currentUser.lastName}"
+        onChange={handleChange}
+        />
+      <label for="email">Email</label>
+      <input
+        name="email"
+        value="{currentUser.email}"
+        onChange={handleChange}
+      />
+      <label for="password">Comfirm Password to make changes:</label>
+      <input
+        name="password"
+        type="password"
         onChange={handleChange}
       />
       <input type="submit" />
@@ -30,4 +56,4 @@ function SignupForm({searchFunction}){
   )
 }
 
-export default SignupForm;
+export default ProfileForm;

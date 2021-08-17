@@ -6,6 +6,12 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from './ProfileForm';
 
+/** Routes
+ *  TODO: functions for forms
+ *  TODO: list & company 
+ * App -> Routes
+ */
+
 function Routes(){
   return (
     <Switch>
@@ -19,17 +25,18 @@ function Routes(){
         <ProfileForm />
       </Route>
       <Route exact path="/companies">
-        <Jobly listType="companies"/>
+        <Jobly list={ list } listType="companies"/>
       </Route>
       <Route exact path="/companies/:company">
-        <CompanyDetail />
+        <CompanyDetail company={ company }/>
       </Route>
       <Route exact path="/jobs">
-        <Jobly listType="jobs"/>
+        <Jobly list={ list } listType="jobs"/>
       </Route>
       <Route exact path="/">
-        <Homepage/>
+        <Homepage />
       </Route>
+      <Redirect to="/" />
     </Switch>
   )
 }

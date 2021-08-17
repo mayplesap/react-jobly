@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+/** SearchForm
+ * 
+ * Jobly -> SearchForm
+ */
 function SearchForm({searchFunction}){
 
   const [formData, setFormData] = useState({});
@@ -16,6 +20,7 @@ function SearchForm({searchFunction}){
 
   function handleSubmit(evt){
     evt.preventDefault();
+    searchFunction(formData);
   }
 
   return (

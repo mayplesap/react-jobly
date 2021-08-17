@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-function LoginForm(){
+/** LoginForm
+ * 
+ * TODO: handleSave & alert
+ * 
+ * Routes -> LoginForm
+ */
+function LoginForm({ handleSave }){
   const [formData, setFormData] = useState({});
 
   function handleChange(evt){
@@ -15,13 +21,20 @@ function LoginForm(){
 
   function handleSubmit(evt){
     evt.preventDefault();
+    handleSave(formData)
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <label for="username">Username</label>
       <input
-        name="search"
-        placeholder="Enter Search Term..."
+        name="username"
+        onChange={handleChange}
+      />
+      <label for="password">Password</label>
+      <input
+        name="password"
+        type="password"
         onChange={handleChange}
       />
       <input type="submit" />
