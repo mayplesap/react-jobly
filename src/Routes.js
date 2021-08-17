@@ -27,7 +27,7 @@ function Routes({list, company}){
       <Route exact path="/companies">
         <Jobly listType="companies"/>
       </Route>
-      <Route exact path="/companies/:company">
+      <Route exact path="/companies/:handle">
         <CompanyDetail />
       </Route>
       <Route exact path="/jobs">

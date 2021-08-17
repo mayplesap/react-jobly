@@ -1,7 +1,13 @@
 import CompanyCard from "./CompanyCard";
 import { Link } from "react-router-dom";
 
-function CompanyList({companies}){
+/** TODO:
+ * CompanyList
+ * 
+ * 
+ * Jobly -> CompanyList
+ */
+function CompanyList({ companies }){
   
   return (
     <div>

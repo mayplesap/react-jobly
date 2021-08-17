@@ -1,14 +1,16 @@
 import SearchForm from "./SearchForm";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
-import JoblyApi from "./JoblyApi";
+import JoblyApi from "./api";
 import { useState, useEffect } from "react";
 
+/** TODO:
+ * 
+ */
 function Jobly({ listType }) {
   const [list, setList] = useState([]);
 
   async function updateList() {
-    //fjdskaf
     setList(()=>(list))
   }
 
@@ -40,7 +42,7 @@ function Jobly({ listType }) {
       <SearchForm searchFunction={updateList} />
       {listType === "companies"
         ? <CompanyList companies={list} />
-        : <JobList jobs={list} />
+        : null
       }
     </div>
   )
