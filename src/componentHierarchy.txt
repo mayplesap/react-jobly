@@ -118,8 +118,13 @@ profileForm
     - prop --> function
     - state --> formData
 
+-alert
+    - prop --> errors
+    - display the list of errors
+
 
 App --> Routes  --> 3 forms (login/register/profile)
+                                --> alert
 
                 --> Jobly       --> searchForm
                                 --> companiesList   --> companyCard --> companyDetails --> jobsList --> jobCard
