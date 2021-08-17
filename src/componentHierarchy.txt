@@ -1,0 +1,130 @@
+admin & non-admin same view
+
+companies -> can search for companies
+    -> click on company = shows list available jobs
+jobs -> can serch for jobs
+
+can apply for jobs
+profile -> can edit first/last name & email
+    -> password to confirm choices
+
+jobly icon is bring home and has msg
+signout
+
+register -> username, first/last name, email, password
+
+####################################################
+
+navBar
+    - logged out view
+        - home --> /
+        - login --> /login
+        - signiup --> /signup
+
+    -logged in view
+        - home --> /
+        - companies --> /companies
+        - jobs --> /jobs
+        - profile --> /profile
+        - logout --> /
+
+after login/signup --> /companies
+click on company --> companies/:company
+
+3 forms
+    - login
+        - username
+        - password
+    - register
+        - username
+        - password
+        - first name
+        - last name
+        - email
+    - edit profile
+        - first name
+        -last name
+        - email
+        - confirm password
+
+###################################################
+
+App 
+    - no props or state
+
+Routes
+    - routing
+
+navBar 
+    - these would be links
+     - logged out view
+        - home 
+        - login 
+        - signiup
+
+    - logged in view
+        - home 
+        - companies 
+        - jobs 
+        - profile 
+        - logout {username}
+
+home 
+    - logged in --> display
+        - renders "Welcome Back, {username}"
+
+    - logged out --> display    
+        - show login/signup button
+            - goes to login/signup form component
+
+companiesList
+    - prop --> list of companies
+    - render all companyCards
+
+companyCard
+    - prop --> company
+    - render company info
+
+companyDetail
+    - prop --> company ... {company:  yada yada.... jobs: [{yada}...{yada}]}
+    - render all jobs for company
+
+Jobly (name pending)
+    - prop --> array of objects (can be companies/jobs)
+    - render searchForm & list 
+
+jobsList
+    - prop --> list of jobs
+    - renders all jobs
+    - state --> keep track of apply / applied
+
+jobCard 
+    - prop --> job, apply function
+    - render jobCard
+
+loginForm
+    - prop --> function
+    - state --> formData
+
+registerForm
+    - prop --> function 
+    - state --> formData
+
+profileForm
+    - prop --> currentUser, function
+    - state --> formData
+
+- searchForm
+    - prop --> function
+    - state --> formData
+
+
+App --> Routes  --> 3 forms (login/register/profile)
+
+                --> Jobly       --> searchForm
+                                --> companiesList   --> companyCard --> companyDetails --> jobsList --> jobCard
+                                --> jobsList        --> jobCard
+
+                --> home        --> login/signup button
+
+    --> NavBar --> links that point to routes
