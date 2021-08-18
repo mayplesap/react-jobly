@@ -9,18 +9,18 @@ function JobCard({ job, handleSave, isApplied }) {
   // let currUser = ...;//TODO:
 
   return (
-    <div>
-      <h3>{job.title}</h3>
-      <h4>{job.companyHandle}</h4>
+    <div className="row border shadow mt-3 rounded">
+      <h3 className="col-12">{job.title}</h3>
+      <h4 className="col-12 font-weight-normal">{job.companyHandle}</h4>
       {job.salary
         ?
-        <p>Salary: {job.salary}</p>
+        <p className="col-12">Salary: {job.salary}</p>
         :
         null
       }
       {job.equity
         ?
-        <p>Equity: {job.equity}</p>
+        <p className="col-12">Equity: {job.equity}</p>
         :
         null
       }

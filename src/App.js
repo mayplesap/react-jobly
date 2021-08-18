@@ -2,6 +2,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
 import Navbar from './Navbar';
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import "bootswatch/dist/flatly/bootstrap.min.css";
 
 function App() {
 

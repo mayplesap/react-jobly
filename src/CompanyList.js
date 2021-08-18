@@ -10,9 +10,12 @@ import { Link } from "react-router-dom";
 function CompanyList({ companies }){
   
   return (
-    <div>
+    <div className="container">
     { companies.map( company => (
-    <Link key={company.handle} to={`/companies/${company.handle}`}>
+    <Link 
+      key={company.handle} 
+      to={`/companies/${company.handle}`} 
+      className="text-decoration-none">
     <CompanyCard 
       company={company} />
     </Link>) 

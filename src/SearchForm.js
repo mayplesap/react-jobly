@@ -25,13 +25,14 @@ function SearchForm({handleSearch}){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="text-center">
       <input
         name="search"
         placeholder="Enter Search Term..."
         onChange={handleChange}
+        className="mr-3"
       />
-      <input type="submit" />
+      <button type="button" classname="btn btn-primary">Submit</button>
     </form>
   )
 }
