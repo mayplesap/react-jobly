@@ -17,6 +17,8 @@ import { NavLink } from "react-router-dom";
  * App -> Navbar
  */
 function Navbar({ currentUser, logout }) {
+  
+
   return (
     <nav className="navbar navbar-expand">
     <div className="container-fluid">
