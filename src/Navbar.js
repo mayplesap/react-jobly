@@ -18,26 +18,36 @@ import { NavLink } from "react-router-dom";
  */
 function Navbar({ isUser }) {
   return (
-    <nav className="Navbar">
-      <NavLink exact to="/">
+    <nav className="navbar navbar-expand">
+    <div className="container-fluid">
+      <NavLink className="nav-link" exact to="/">
         Jobly
       </NavLink>
       {(isUser) ?
         (
-          <div>
-            <NavLink exact to="/companies">
+
+          <ul className="nav navabar-nav">
+            <li>
+            <NavLink className="nav-item nav-link" exact to="/companies">
               Companies
             </NavLink>
-            <NavLink exact to="/jobs">
+            </li>
+            <li>
+            <NavLink className="nav-item nav-link" exact to="/jobs">
               Jobs
             </NavLink>
-            <NavLink exact to="/profile">
+            </li>
+            <li>
+            <NavLink  className="nav-item nav-link" exact to="/profile">
               Profile
             </NavLink>
-            <NavLink exact to="logout">
+            </li>
+            <li>
+            <NavLink className="nav-item nav-link" exact to="logout">
               Log out
             </NavLink>
-          </div>
+            </li>
+          </ul>
         )
         : (
           <div>
@@ -50,6 +60,7 @@ function Navbar({ isUser }) {
           </div>
         )
       }
+      </div>
     </nav>
   )
 }

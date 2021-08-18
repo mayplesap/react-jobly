@@ -15,7 +15,7 @@ function CompanyList({ companies }){
     <Link 
       key={company.handle} 
       to={`/companies/${company.handle}`} 
-      className="text-decoration-none">
+      className="text-decoration-none text-reset">
     <CompanyCard 
       company={company} />
     </Link>) 
