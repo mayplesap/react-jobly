@@ -31,14 +31,21 @@ function App() {
       setCurrentUser(user);
     }
     async function login(data) {
-      let user = await JoblyApi.login(currentUser);
+      let user = await JoblyApi.login(data);
       setToken(JoblyApi.token);
-      setCurrentUser(user)
+      setCurrentUser(user);
     }
+    async function update(data){
+      let user = await JoblyApi.update(data, currentUser.username);
+      setCurrentUser(user);
+    }
+
     if(login.method === "signup"){
       signup();
     } else if (login.method === "login") {
       login();
+    } else if (login.method === "update") {
+      update();
     }
 
   },[login])

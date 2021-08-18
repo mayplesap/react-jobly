@@ -68,7 +68,6 @@ class JoblyApi {
   static async getUser(){
     let payload = await JWT.decode(this.token);
     let res = await this.request(`users/${payload.username}`);
-    console.log('USER RESPONSE', res)
     return res.user;
   }
 
@@ -87,6 +86,12 @@ class JoblyApi {
     let user = await this.getUser();
     return user;
   }
+
+    /* signup - sets token & returns user */
+    static async update(data, username){
+      let res = await this.request(`users/${username}`, data, "patch");
+      return res.user;
+    }
 
 }
 

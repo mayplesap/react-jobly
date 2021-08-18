@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import UserContext from './userContext';
+import { useHistory } from "react-router-dom";
 
 /** ProfileForm
  * 
  * TODO: handleSave & alert
  * Routes -> ProfileForm
  */
-function ProfileForm({ handleSave, currentUser}){
-  const [formData, setFormData] = useState({});
+function ProfileForm({ handleSave}){
+  const currentUser = useContext(UserContext);
+  const [formData, setFormData] = useState(currentUser);
+  // const history = useHistory();
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -19,8 +23,10 @@ function ProfileForm({ handleSave, currentUser}){
   }
 
   function handleSubmit(evt){
+    console.log()
     evt.preventDefault();
-    handleSave(formData);
+    handleSave(formData, "update");
+    // history.push("/companies");
   }
 
   return (
@@ -31,14 +37,14 @@ function ProfileForm({ handleSave, currentUser}){
       <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
-        value="{currentUser.firstName}"
+        placeholder={`${currentUser.firstName}`}
         onChange={handleChange}
         className="form-control"
         />
       <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
-        value="{currentUser.lastName}"
+        placeholder={`${currentUser.lastName}`}
         onChange={handleChange}
         className="form-control"
         />
@@ -46,7 +52,7 @@ function ProfileForm({ handleSave, currentUser}){
       <input
         name="email"
         type="email"
-        value="{currentUser.email}"
+        placeholder={`${currentUser.email}`}
         onChange={handleChange}
         className="form-control"
       />
@@ -56,6 +62,7 @@ function ProfileForm({ handleSave, currentUser}){
         type="password"
         onChange={handleChange}
         className="form-control"
+        required="required"
       />
       <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>

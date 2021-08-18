@@ -29,7 +29,7 @@ function SignupForm({ handleSave }){
 
   return (
     <form onSubmit={handleSubmit} className="container mt-3">
-      <div clasName="form-group">
+      <div className="form-group">
       <label htmlFor="username">Username</label>
       <input
         name="username"
