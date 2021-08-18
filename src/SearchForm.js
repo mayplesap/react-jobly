@@ -25,14 +25,18 @@ function SearchForm({handleSearch}){
   }
 
   return (
-    <form onSubmit={handleSubmit} className="text-center">
+    <form onSubmit={handleSubmit} className="form-group row text-center">
+      <div className="col-10">
       <input
         name="search"
         placeholder="Enter Search Term..."
         onChange={handleChange}
-        className="mr-3"
+        className="form-control"
       />
+      </div>
+      <div className="col-2">
       <button type="submit" className="btn btn-primary">Submit</button>
+      </div>
     </form>
   )
 }

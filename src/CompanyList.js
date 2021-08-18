@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function CompanyList({ companies }){
   
   return (
-    <div className="container">
+    <div>
     { companies.map( company => (
     <Link 
       key={company.handle} 

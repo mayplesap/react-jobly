@@ -56,7 +56,7 @@ function Jobly({ listType }) {
   if(isLoading) return <p>Loading...</p>
 
   return (
-    <div >
+    <div className="container" >
       <SearchForm handleSearch={updateSearchTerm} />
       {listType === "companies"
         ? <CompanyList companies={list} />
