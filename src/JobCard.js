@@ -11,9 +11,19 @@ function JobCard({ job, handleSave, isApplied }) {
   return (
     <div>
       <h3>{job.title}</h3>
-      <h4>{job.handle}</h4>
-      <p>Salary: {job.salay}</p>
-      <p>Equity: {job.equity}</p>
+      <h4>{job.companyHandle}</h4>
+      {job.salary
+        ?
+        <p>Salary: {job.salary}</p>
+        :
+        null
+      }
+      {job.equity
+        ?
+        <p>Equity: {job.equity}</p>
+        :
+        null
+      }
       {/* {job in currUser.jobs
         ?
         <button disabled>Applied</button>

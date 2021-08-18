@@ -52,6 +52,17 @@ class JoblyApi {
     return res.company;
   }
 
+  /** Get list of jobs 
+   * optional search filter: minSalary, hasEquity, title
+   * input: {minSalary: <integer>, hasEquity: <integer>, title: <string>}
+   * 
+   * output: { jobs: [ { id, title, salary, equity, companyHandle, companyName },...] }
+  */
+ static  async getJobs(searchFilter={}) {
+   let res = await this.request(`jobs`, searchFilter);
+   return res.jobs;
+ }
+
   // obviously, you'll add a lot here ...
 }
 

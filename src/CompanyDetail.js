@@ -6,6 +6,10 @@ import { useParams } from "react-router-dom";
 /** TODO:
  * CompanyDetail
  * 
+ * state:
+ * - company: object
+ * - isLoading: boolean
+ * 
  * Jobly -> CompanyList -> CompanyDetail
  */
 
@@ -14,21 +18,16 @@ function CompanyDetail(){
   const [isLoading, setIsLoading] = useState(true);
   const { handle } = useParams();
 
-  async function getCompany() {
-    return await JoblyApi.getCompany();
-  }
-
   useEffect(function getCompanyOnRender(){
     async function callApi() {
-      let companyObj = await getCompany(handle);
+      let companyObj = await JoblyApi.getCompany(handle);
       setCompany(companyObj);
+      setIsLoading(false);
     }
     callApi();
-    setIsLoading(false);
   }, [handle]);
 
   if(isLoading) return <p>Loading...</p>
-
   return (
     <div>
       <h2>{company.name}</h2>

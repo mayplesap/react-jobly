@@ -5,7 +5,17 @@ import JoblyApi from "./api";
 import { useState, useEffect } from "react";
 
 /** TODO:
+ * Jobly
  * 
+ * props:
+ * - listType: string of "companies" or "jobs"
+ * 
+ * state:
+ * - list
+ * - isLoading
+ * - searchTerm
+ * 
+ * App -> Routes -> Jobly
  */
 function Jobly({ listType }) {
   const [list, setList] = useState([]);
@@ -15,22 +25,14 @@ function Jobly({ listType }) {
   function updateSearchTerm(word){
     setSearchTerm(word);
   }
-
-  async function getCompanies(){
-    return await JoblyApi.getCompanies();
-  }
-
-  async function getJobs(){
-    return await JoblyApi.getJobs();
-  }
-
+  
   useEffect(function getListOnRender(){
     async function callApi(){
       let newList;
-      if(listType==="companies"){
-        newList = await getCompanies();
+      if(listType === "companies"){
+        newList = await JoblyApi.getCompanies();
       } else {
-        newList = await getJobs();
+        newList = await JoblyApi.getJobs();
       }
       setList(newList);
       setIsLoading(false);
@@ -40,11 +42,16 @@ function Jobly({ listType }) {
 
   useEffect(function updateListWhenSearch(){
     async function updateList() {
-      let newList = await JoblyApi.getCompanies({ name: searchTerm });
+      let newList;
+      if(listType === "companies") {
+        newList = await JoblyApi.getCompanies({ name: searchTerm });
+      } else {
+        newList = await JoblyApi.getJobs({ title: searchTerm });
+      }
       setList( newList );
     }
     updateList();
-  },[searchTerm])
+  },[searchTerm, listType])
 
   if(isLoading) return <p>Loading...</p>
 

@@ -12,9 +12,8 @@ function CompanyList({ companies }){
   return (
     <div>
     { companies.map( company => (
-    <Link to={`/companies/${company.name}`}>
+    <Link key={company.handle} to={`/companies/${company.handle}`}>
     <CompanyCard 
-      key={company.handle} 
       company={company} />
     </Link>) 
     )}
