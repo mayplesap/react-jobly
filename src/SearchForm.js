@@ -32,7 +32,7 @@ function SearchForm({handleSearch}){
         onChange={handleChange}
         className="mr-3"
       />
-      <button type="button" className="btn btn-primary">Submit</button>
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )
 }

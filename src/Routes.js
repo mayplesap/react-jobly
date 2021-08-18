@@ -15,6 +15,7 @@ import ProfileForm from './ProfileForm';
 function Routes({list, company, login, signup}){
   return (
     <Switch>
+
       <Route exact path="/login">
         <LoginForm handleSave={login}/>
       </Route>
@@ -37,7 +38,8 @@ function Routes({list, company, login, signup}){
         <Homepage />
       </Route>
       <Redirect to="/" />
-    </Switch>
+      </Switch>
+
   )
 }
 
