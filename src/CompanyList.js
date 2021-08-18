@@ -1,9 +1,10 @@
 import CompanyCard from "./CompanyCard";
 import { Link } from "react-router-dom";
 
-/** TODO:
- * CompanyList
+/** CompanyList
  * 
+ * props:
+ * - companies: array of company objects
  * 
  * Jobly -> CompanyList
  */

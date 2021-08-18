@@ -4,7 +4,17 @@ import { useHistory } from "react-router-dom";
 
 /** ProfileForm
  * 
- * TODO: handleSave & alert
+ * TODO: alert for successfully update or errors
+ * 
+ * props:
+ * - handleSave: function
+ * 
+ * state:
+ * - formData
+ * 
+ * context:
+ * - user: UserContext
+ * 
  * Routes -> ProfileForm
  */
 function ProfileForm({ handleSave}){
@@ -26,6 +36,7 @@ function ProfileForm({ handleSave}){
     console.log()
     evt.preventDefault();
     handleSave(formData, "update");
+    console.log("sucessfully updatdddd!")
     // history.push("/companies");
   }
 
@@ -37,14 +48,14 @@ function ProfileForm({ handleSave}){
       <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
-        placeholder={`${currentUser.firstName}`}
+        value={formData.firstName}
         onChange={handleChange}
         className="form-control"
         />
       <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
-        placeholder={`${currentUser.lastName}`}
+        value={formData.lastName}
         onChange={handleChange}
         className="form-control"
         />
@@ -52,7 +63,7 @@ function ProfileForm({ handleSave}){
       <input
         name="email"
         type="email"
-        placeholder={`${currentUser.email}`}
+        vslue={formData.email}
         onChange={handleChange}
         className="form-control"
       />

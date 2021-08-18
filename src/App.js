@@ -7,6 +7,16 @@ import UserContext from "./userContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 
+/** App
+ * 
+ * state:
+ * - currentUser: object
+ * - token: jwt token from backend
+ * - login: object like {isLogged: boolean, method: string}
+ * 
+ * context:
+ * - currentUser: context provider
+ */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(JoblyApi.token);
@@ -16,6 +26,9 @@ function App() {
     setCurrentUser(null)
   }
 
+  //need docstring cause no idea what method is
+  //make consts for signin, login, update
+  //so no typo and have wrong thing and help with self documenting TODO:
   function save(data, method){
     setCurrentUser(data);
     setLogin({
@@ -24,6 +37,12 @@ function App() {
     });
   }
 
+  //if currentuser change but not changes login --> not actually log in
+  //need in dependency list but missing something help prevent infinite loop
+  //better as separate methods = clearer way express what doing
+  //3 diff actions
+  //be consistent with css className
+  //TODO: make it a named function
   useEffect(()=>{
     async function signup() {
       let user = await JoblyApi.register(currentUser);

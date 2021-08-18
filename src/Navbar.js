@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-/** TODO: add ternary
- * Navbar
+/** Navbar
  * when logged in 
  *    - Home
  *    - Companies
@@ -14,11 +13,14 @@ import { NavLink } from "react-router-dom";
  *    - Login
  *    - Signup
  * 
+ * props:
+ * - currentUser: object
+ * - logout: function to logout
+ * 
  * App -> Navbar
  */
 function Navbar({ currentUser, logout }) {
-  
-
+//could make into 2 functions 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light p-0">
     <div className="container-fluid p-0">
@@ -46,7 +48,7 @@ function Navbar({ currentUser, logout }) {
             </li>
             <li>
               <NavLink className="nav-item nav-link" exact to="logout" onClick={logout}>
-                Log out 
+                Log out {currentUser.username}
               </NavLink>
             </li>
           </ul>

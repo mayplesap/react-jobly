@@ -3,7 +3,12 @@ import { useHistory } from "react-router-dom";
 
 /** LoginForm
  * 
- * TODO: handleSave & alert
+ * TODO: alert
+ * props:
+ * - handleSave: function
+ * 
+ * state: 
+ * - formData: objec
  * 
  * Routes -> LoginForm
  */
@@ -23,6 +28,7 @@ function LoginForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
+    //TODO: if imported constant then 32 make more sense than just string
     handleSave(formData, "login")
     history.push("/companies");
   }

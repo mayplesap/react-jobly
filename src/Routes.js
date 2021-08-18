@@ -9,9 +9,13 @@ import ProfileForm from './ProfileForm';
 import UserContext from './userContext';
 
 /** Routes
- *  TODO: functions for forms
+ *  
  *  props:
- * - handleSave - function for signup & login
+ * - handleSave - function for signup, login, profile
+ * 
+ * context:
+ * - user: UserContext
+ * 
  * App -> Routes
  */
 
@@ -35,7 +39,9 @@ function Routes({ handleSave }) {
       </Switch>
     )
   }
-
+//TODO: listType need be constants - passing down something that is very specific
+//can put in a file where can import or in companyList/joblist
+//from a single place where pulling them in 
   return (
     <Switch>
 

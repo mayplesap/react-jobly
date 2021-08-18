@@ -2,26 +2,33 @@ import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import UserContext from './userContext';
 
+/** Homepage
+ * 
+ * context:
+ * - user
+ * 
+ * Routes -> Homepage
+ */
 function Homepage() {
   const user = useContext(UserContext); 
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center mt-5 container">
       <h1>Jobly</h1>
-      
-      {user? :
-      
-        }
-      <li>
-        <Link exact to="/login" className="nav-item nav-link">
+      <p>All the jobs in one, convenient place.</p>
+      {user? 
+      <h3>Welcome Back, {user.username}</h3>
+      :
+      <div>
+        <Link type="button" exact to="/login" className="btn btn-info" style={{"marginRight": 10}}>
           Login
         </Link>
-      </li>
-      <li>
-        <Link exact to="/signup" className="nav-item nav-link">
+        <Link type="button" exact to="/signup" className="btn btn-info">
           Signup
         </Link>
-      </li>
+      </div>
+        }
+
     </div>
   )
 }

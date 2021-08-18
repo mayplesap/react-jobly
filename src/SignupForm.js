@@ -3,7 +3,13 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 /** Signup Form
- * TODO: Alert & handleSave function
+ * TODO: Alert
+ * 
+ * props:
+ * - handleSave: function
+ * 
+ * state:
+ * - formData
  * 
  * Routes -> SignupForm
  */
@@ -23,10 +29,11 @@ function SignupForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
+    //TODO: the const for signup
     handleSave(formData, "signup");
     history.push("/companies");
   }
-
+  //htmlFor conencst to id of input
   return (
     <form onSubmit={handleSubmit} className="container mt-3">
       <div className="form-group">
@@ -49,7 +56,7 @@ function SignupForm({ handleSave }){
         onChange={handleChange}
         className="form-control"
       />
-      <label htmlFor="lastNae">Last Name</label>
+      <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
         onChange={handleChange}

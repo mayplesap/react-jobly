@@ -1,7 +1,8 @@
 import React from "react";
 
-/** TODO:
- * JobCard
+/** JobCard
+ * 
+ * TODO: handlesave, isapplied
  * 
  * JobList -> JobCard
  */

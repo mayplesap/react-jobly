@@ -3,6 +3,8 @@ import React from "react";
 /** TODO:
  * CompanyCard
  * 
+ * prop:
+ * - company: object
  * 
  * CompanyList -> CompanyCard
  */

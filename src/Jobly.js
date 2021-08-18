@@ -4,8 +4,7 @@ import JobList from "./JobList";
 import JoblyApi from "./api";
 import { useState, useEffect } from "react";
 
-/** TODO:
- * Jobly
+/** Jobly
  * 
  * props:
  * - listType: string of "companies" or "jobs"
@@ -53,7 +52,7 @@ function Jobly({ listType }) {
     updateList();
   },[searchTerm, listType])
 
-  if(isLoading) return <p>Loading...</p>
+  if(isLoading) return <h2 className="text-center mt-5">Loading...</h2>
 
   return (
     <div className="container" >

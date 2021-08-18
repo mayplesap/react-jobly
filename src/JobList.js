@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import JobCard from "./JobCard"
+//TODO: { userState, useEffect } for apply
 
-/** TODO:
- * JobList
+/** JobList
  * 
  * props:
  * - jobs: array of objects
