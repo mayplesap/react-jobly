@@ -28,34 +28,42 @@ function SignupForm({ handleSave }){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="container mt-3">
+      <div clasName="form-group">
       <label htmlFor="username">Username</label>
       <input
         name="username"
         onChange={handleChange}
+        className="form-control"
       />
       <label htmlFor="password">Password</label>
       <input
         name="password"
         type="password"
         onChange={handleChange}
+        className="form-control"
       />
       <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
         onChange={handleChange}
+        className="form-control"
       />
       <label htmlFor="lastNae">Last Name</label>
       <input
         name="lastName"
         onChange={handleChange}
+        className="form-control"
       />
       <label htmlFor="email">Email</label>
       <input
         name="email"
+        type="email"
         onChange={handleChange}
+        className="form-control"
       />
-      <input type="submit" />
+      <button type="submit" className="btn btn-primary mt-3">Submit</button>
+      </div>
     </form>
   )
 }

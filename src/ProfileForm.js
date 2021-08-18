@@ -24,7 +24,8 @@ function ProfileForm({ handleSave, currentUser}){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="container mt-3">
+      <div className="form-group">
       <label>Username</label>
       <p>{currentUser.username}</p>
       <label htmlFor="firstName">First Name</label>
@@ -32,26 +33,32 @@ function ProfileForm({ handleSave, currentUser}){
         name="firstName"
         value="{currentUser.firstName}"
         onChange={handleChange}
+        className="form-control"
         />
       <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
         value="{currentUser.lastName}"
         onChange={handleChange}
+        className="form-control"
         />
       <label htmlFor="email">Email</label>
       <input
         name="email"
+        type="email"
         value="{currentUser.email}"
         onChange={handleChange}
+        className="form-control"
       />
       <label htmlFor="password">Comfirm Password to make changes:</label>
       <input
         name="password"
         type="password"
         onChange={handleChange}
+        className="form-control"
       />
-      <input type="submit" />
+      <button type="submit" className="btn btn-primary mt-3">Submit</button>
+      </div>
     </form>
   )
 }

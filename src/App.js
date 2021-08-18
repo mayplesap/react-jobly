@@ -3,8 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
 import Navbar from './Navbar';
 import JoblyApi from "./api";
+import UserContext from "./userContext";
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 
 function App() {
@@ -41,8 +41,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar currentUser={currentUser} logout={logout}/>
-        <Routes login={login} signup={save} />
+        <UserContext.Provider value={ currentUser }>
+          <Navbar currentUser={currentUser} logout={logout}/>
+          <Routes login={login} signup={save} />
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

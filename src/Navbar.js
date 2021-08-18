@@ -20,8 +20,8 @@ function Navbar({ currentUser, logout }) {
   
 
   return (
-    <nav className="navbar navbar-expand">
-    <div className="container-fluid">
+    <nav className="navbar navbar-expand navbar-light bg-light p-0">
+    <div className="container-fluid p-0">
       <NavLink className="nav-link" exact to="/">
         Jobly
       </NavLink>

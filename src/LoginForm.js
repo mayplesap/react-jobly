@@ -25,19 +25,24 @@ function LoginForm({ handleSave }){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        name="username"
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        name="password"
-        type="password"
-        onChange={handleChange}
-      />
-      <input type="submit" />
+    <form onSubmit={handleSubmit} className="container mt-3">
+      <div className="form-group">
+        <label htmlFor="username">Username</label>
+        <input
+          name="username"
+          onChange={handleChange}
+          className="form-control"
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          type="password"
+          onChange={handleChange}
+          className="form-control"
+        />
+        <button type="submit" className="btn btn-primary mt-3">Submit</button>
+      </div>
+
     </form>
   )
 }
