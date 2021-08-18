@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 /** Signup Form
  * TODO: Alert & handleSave function
@@ -8,6 +9,7 @@ import { useState } from "react";
  */
 function SignupForm({ handleSave }){
   const [formData, setFormData] = useState({});
+  const history = useHistory();
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -22,32 +24,33 @@ function SignupForm({ handleSave }){
   function handleSubmit(evt){
     evt.preventDefault();
     handleSave(formData);
+    history.push("/companies");
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="username">Username</label>
+      <label htmlFor="username">Username</label>
       <input
         name="username"
         onChange={handleChange}
       />
-      <label for="password">Password</label>
+      <label htmlFor="password">Password</label>
       <input
         name="password"
         type="password"
         onChange={handleChange}
       />
-      <label for="firstName">First Name</label>
+      <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
         onChange={handleChange}
       />
-      <label for="lastNae">Last Name</label>
+      <label htmlFor="lastNae">Last Name</label>
       <input
         name="lastName"
         onChange={handleChange}
       />
-      <label for="email">Email</label>
+      <label htmlFor="email">Email</label>
       <input
         name="email"
         onChange={handleChange}

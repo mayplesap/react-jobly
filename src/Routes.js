@@ -12,11 +12,11 @@ import ProfileForm from './ProfileForm';
  * App -> Routes
  */
 
-function Routes({list, company, logout, signup}){
+function Routes({list, company, login, signup}){
   return (
     <Switch>
       <Route exact path="/login">
-        <LoginForm handleSave={logout}/>
+        <LoginForm handleSave={login}/>
       </Route>
       <Route exact path="/signup">
         <SignupForm handleSave={signup}/>

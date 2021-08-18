@@ -16,7 +16,7 @@ import { NavLink } from "react-router-dom";
  * 
  * App -> Navbar
  */
-function Navbar({ currentUser }) {
+function Navbar({ currentUser, logout }) {
   return (
     <nav className="navbar navbar-expand">
     <div className="container-fluid">
@@ -43,7 +43,7 @@ function Navbar({ currentUser }) {
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-item nav-link" exact to="logout">
+              <NavLink className="nav-item nav-link" exact to="logout" onClick={logout}>
                 Log out 
               </NavLink>
             </li>
@@ -53,12 +53,12 @@ function Navbar({ currentUser }) {
         
           <ul className="nav navabar-nav">
             <li>
-              <NavLink exact to="/login">
+              <NavLink exact to="/login" className="nav-item nav-link">
                 Login
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/signup">
+              <NavLink exact to="/signup" className="nav-item nav-link">
                 Signup
               </NavLink>
             </li>

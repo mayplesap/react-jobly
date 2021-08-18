@@ -26,12 +26,12 @@ function LoginForm({ handleSave }){
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="username">Username</label>
+      <label htmlFor="username">Username</label>
       <input
         name="username"
         onChange={handleChange}
       />
-      <label for="password">Password</label>
+      <label htmlFor="password">Password</label>
       <input
         name="password"
         type="password"

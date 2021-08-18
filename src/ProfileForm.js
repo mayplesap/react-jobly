@@ -27,25 +27,25 @@ function ProfileForm({ handleSave, currentUser}){
     <form onSubmit={handleSubmit}>
       <label>Username</label>
       <p>{currentUser.username}</p>
-      <label for="firstName">First Name</label>
+      <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
         value="{currentUser.firstName}"
         onChange={handleChange}
         />
-      <label for="lastName">Last Name</label>
+      <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
         value="{currentUser.lastName}"
         onChange={handleChange}
         />
-      <label for="email">Email</label>
+      <label htmlFor="email">Email</label>
       <input
         name="email"
         value="{currentUser.email}"
         onChange={handleChange}
       />
-      <label for="password">Comfirm Password to make changes:</label>
+      <label htmlFor="password">Comfirm Password to make changes:</label>
       <input
         name="password"
         type="password"

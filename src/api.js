@@ -33,22 +33,6 @@ class JoblyApi {
     }
   }
 
-  // Individual API routes
-  /*TODO: signup*/
-  static async register(data){
-    let res = await this.request(`auth/register`, data, "post");
-    console.log("RES", res)
-    this.token = res;
-    return JWT.decode(res);
-  }
-
-  /* TODO: login*/
-  static async login(data){
-    let res = await this.request(`auth/token`, data, "post");
-    this.token = res;
-    return JWT.decode(res);
-  }
-
   /* Get list of companies, 
   optional search filter: minEmployees, maxEmployees, nameLike
   input:  {minEmployees: <integer>, maxEmployees: <integer>, nameLike: <string>}
@@ -79,6 +63,32 @@ class JoblyApi {
  }
 
   // obviously, you'll add a lot here ...
+
+  static async getUser(){
+    let payload = await JWT.decode(this.token);
+    let res = await this.request(`users/${payload.username}`);
+    console.log('USER RESPONSE', res)
+    return res.user;
+  }
+
+  // Individual API routes
+  /*TODO: signup*/
+  static async register(data){
+    let res = await this.request(`auth/register`, data, "post");
+    console.log("RES", res);
+    console.log("PAYLOAD2", await JWT.decode(res.token));
+    this.token = res.token;
+    let user = await this.getUser();
+    return user;
+  }
+
+  /* TODO: login*/
+  static async login(data){
+    let res = await this.request(`auth/token`, data, "post");
+    this.token = res;
+    return JWT.decode(res.token);
+  }
+
 }
 
 // for now, put token ("testuser" / "password" on class)
