@@ -10,22 +10,18 @@ import "bootswatch/dist/flatly/bootstrap.min.css";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(JoblyApi.token);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //TODO: eventually have authentication in here
-
-  async function login(data) {
-    let user = await JoblyApi.login(data);
-    setToken(JoblyApi.token);
-    setCurrentUser(user)
-  }
+  const [login, setLogin] = useState({isLogged: false, method: ""});
 
   function logout() {
     setCurrentUser(null)
   }
 
-  function save(data){
+  function save(data, method){
     setCurrentUser(data);
-    setIsLoggedIn(true);
+    setLogin({
+      isLogged: true,
+      method: method
+    });
   }
 
   useEffect(()=>{
@@ -34,16 +30,25 @@ function App() {
       setToken(JoblyApi.token);
       setCurrentUser(user);
     }
-    signup();
+    async function login(data) {
+      let user = await JoblyApi.login(currentUser);
+      setToken(JoblyApi.token);
+      setCurrentUser(user)
+    }
+    if(login.method === "signup"){
+      signup();
+    } else if (login.method === "login") {
+      login();
+    }
 
-  },[isLoggedIn])
+  },[login])
 
   return (
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={ currentUser }>
           <Navbar currentUser={currentUser} logout={logout}/>
-          <Routes login={login} signup={save} />
+          <Routes handleSave={save} />
         </UserContext.Provider>
       </BrowserRouter>
     </div>

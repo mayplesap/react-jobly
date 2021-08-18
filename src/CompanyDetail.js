@@ -29,9 +29,9 @@ function CompanyDetail(){
 
   if(isLoading) return <p>Loading...</p>
   return (
-    <div>
+    <div className="container mt-5">
       <h2>{company.name}</h2>
-      <h5>{company.description}</h5>
+      <h6>{company.description}</h6>
       <JobList jobs={company.jobs} />
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 /** LoginForm
  * 
@@ -8,6 +9,7 @@ import { useState } from "react";
  */
 function LoginForm({ handleSave }){
   const [formData, setFormData] = useState({});
+  const history = useHistory();
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -21,7 +23,8 @@ function LoginForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
-    handleSave(formData)
+    handleSave(formData, "login")
+    history.push("/companies");
   }
 
   return (

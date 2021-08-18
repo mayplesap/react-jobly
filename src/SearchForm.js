@@ -25,7 +25,7 @@ function SearchForm({handleSearch}){
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-group row text-center mt-3">
+    <form onSubmit={handleSubmit} className="form-group row text-center mt-5">
       <div className="col-10">
       <input
         name="search"

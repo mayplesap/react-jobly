@@ -23,7 +23,7 @@ function SignupForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
-    handleSave(formData);
+    handleSave(formData, "signup");
     history.push("/companies");
   }
 

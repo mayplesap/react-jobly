@@ -8,19 +8,20 @@ import ProfileForm from './ProfileForm';
 
 /** Routes
  *  TODO: functions for forms
- *  TODO: list & company 
+ *  props:
+ * - handleSave - function for signup & login
  * App -> Routes
  */
 
-function Routes({list, company, login, signup}){
+function Routes({ handleSave }){
   return (
     <Switch>
 
       <Route exact path="/login">
-        <LoginForm handleSave={login}/>
+        <LoginForm handleSave={handleSave}/>
       </Route>
       <Route exact path="/signup">
-        <SignupForm handleSave={signup}/>
+        <SignupForm handleSave={handleSave}/>
       </Route>
       <Route exact path="/profile">
         <ProfileForm />
