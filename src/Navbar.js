@@ -16,48 +16,53 @@ import { NavLink } from "react-router-dom";
  * 
  * App -> Navbar
  */
-function Navbar({ isUser }) {
+function Navbar({ currentUser }) {
   return (
     <nav className="navbar navbar-expand">
     <div className="container-fluid">
       <NavLink className="nav-link" exact to="/">
         Jobly
       </NavLink>
-      {(isUser) ?
+      {(currentUser) ?
         (
 
           <ul className="nav navabar-nav">
             <li>
-            <NavLink className="nav-item nav-link" exact to="/companies">
-              Companies
-            </NavLink>
+              <NavLink className="nav-item nav-link" exact to="/companies">
+                Companies
+              </NavLink>
             </li>
             <li>
-            <NavLink className="nav-item nav-link" exact to="/jobs">
-              Jobs
-            </NavLink>
+              <NavLink className="nav-item nav-link" exact to="/jobs">
+                Jobs
+              </NavLink>
             </li>
             <li>
-            <NavLink  className="nav-item nav-link" exact to="/profile">
-              Profile
-            </NavLink>
+              <NavLink  className="nav-item nav-link" exact to="/profile">
+                Profile
+              </NavLink>
             </li>
             <li>
-            <NavLink className="nav-item nav-link" exact to="logout">
-              Log out
-            </NavLink>
+              <NavLink className="nav-item nav-link" exact to="logout">
+                Log out 
+              </NavLink>
             </li>
           </ul>
         )
         : (
-          <div>
-            <NavLink exact to="/login">
-              Login
-            </NavLink>
-            <NavLink exact to="/signup">
-              Signup
-            </NavLink>
-          </div>
+        
+          <ul className="nav navabar-nav">
+            <li>
+              <NavLink exact to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/signup">
+                Signup
+              </NavLink>
+            </li>
+          </ul>
         )
       }
       </div>

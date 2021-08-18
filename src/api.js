@@ -1,4 +1,5 @@
 import axios from "axios";
+import JWT from "jsonwebtoken";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -33,6 +34,20 @@ class JoblyApi {
   }
 
   // Individual API routes
+  /*TODO: signup*/
+  static async register(data){
+    let res = await this.request(`auth/register`, data, "post");
+    console.log("RES", res)
+    this.token = res;
+    return JWT.decode(res);
+  }
+
+  /* TODO: login*/
+  static async login(data){
+    let res = await this.request(`auth/token`, data, "post");
+    this.token = res;
+    return JWT.decode(res);
+  }
 
   /* Get list of companies, 
   optional search filter: minEmployees, maxEmployees, nameLike
