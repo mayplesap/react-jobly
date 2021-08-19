@@ -3,8 +3,7 @@ import JoblyApi from "./api";
 import JobList from "./JobList";
 import { useParams } from "react-router-dom";
 
-/** TODO:
- * CompanyDetail
+/** CompanyDetail
  * 
  * state:
  * - company: object

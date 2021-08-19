@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import UserContext from './userContext';
-import { useHistory } from "react-router-dom";
+import { UPDATE_METHOD } from "./constants";
 
 /** ProfileForm
  * 
@@ -20,7 +20,6 @@ import { useHistory } from "react-router-dom";
 function ProfileForm({ handleSave}){
   const currentUser = useContext(UserContext);
   const [formData, setFormData] = useState(currentUser);
-  // const history = useHistory();
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -33,11 +32,9 @@ function ProfileForm({ handleSave}){
   }
 
   function handleSubmit(evt){
-    console.log()
     evt.preventDefault();
-    handleSave(formData, "update");
+    handleSave(formData, UPDATE_METHOD);
     console.log("sucessfully updatdddd!")
-    // history.push("/companies");
   }
 
   return (
@@ -48,6 +45,7 @@ function ProfileForm({ handleSave}){
       <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
+        id="firstName"
         value={formData.firstName}
         onChange={handleChange}
         className="form-control"
@@ -55,6 +53,7 @@ function ProfileForm({ handleSave}){
       <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
+        id="lastName"
         value={formData.lastName}
         onChange={handleChange}
         className="form-control"
@@ -62,6 +61,7 @@ function ProfileForm({ handleSave}){
       <label htmlFor="email">Email</label>
       <input
         name="email"
+        id="email"
         type="email"
         vslue={formData.email}
         onChange={handleChange}
@@ -70,10 +70,12 @@ function ProfileForm({ handleSave}){
       <label htmlFor="password">Comfirm Password to make changes:</label>
       <input
         name="password"
+        id="password"
         type="password"
         onChange={handleChange}
         className="form-control"
         required="required"
+        autoComplete="on"
       />
       <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>

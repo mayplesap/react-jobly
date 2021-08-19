@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Jobly from "./Jobly";
+import ListWithSearch from "./ListWithSearch";
 import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from './ProfileForm';
 import UserContext from './userContext';
+import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 
 /** Routes
  *  
@@ -55,13 +56,13 @@ function Routes({ handleSave }) {
         <ProfileForm handleSave={handleSave} />
       </Route>
       <Route exact path="/companies">
-        <Jobly listType="companies" />
+        <ListWithSearch listType={LIST_TYPE_COMPANIES} />
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetail />
       </Route>
       <Route exact path="/jobs">
-        <Jobly listType="jobs" />
+        <ListWithSearch listType={LIST_TYPE_JOBS} />
       </Route>
       <Route exact path="/">
         <Homepage />

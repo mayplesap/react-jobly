@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { SIGNUP_METHOD } from "./constants";
 
 /** Signup Form
  * TODO: Alert
@@ -29,42 +30,47 @@ function SignupForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
-    //TODO: the const for signup
-    handleSave(formData, "signup");
+    handleSave(formData, SIGNUP_METHOD);
     history.push("/companies");
   }
-  //htmlFor conencst to id of input
+  
   return (
     <form onSubmit={handleSubmit} className="container mt-3">
       <div className="form-group">
       <label htmlFor="username">Username</label>
       <input
         name="username"
+        id="username"
         onChange={handleChange}
         className="form-control"
       />
       <label htmlFor="password">Password</label>
       <input
         name="password"
+        id="password"
         type="password"
         onChange={handleChange}
         className="form-control"
+        autoComplete="on"
       />
       <label htmlFor="firstName">First Name</label>
       <input
         name="firstName"
+        id="firstName"
         onChange={handleChange}
         className="form-control"
       />
       <label htmlFor="lastName">Last Name</label>
       <input
         name="lastName"
+        id="lastName"
         onChange={handleChange}
         className="form-control"
       />
       <label htmlFor="email">Email</label>
       <input
         name="email"
+        id="email"
         type="email"
         onChange={handleChange}
         className="form-control"

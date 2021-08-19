@@ -20,10 +20,10 @@ function Homepage() {
       <h3>Welcome Back, {user.username}</h3>
       :
       <div>
-        <Link type="button" exact to="/login" className="btn btn-info" style={{"marginRight": 10}}>
+        <Link type="button" to="/login" className="btn btn-info" style={{"marginRight": 10}}>
           Login
         </Link>
-        <Link type="button" exact to="/signup" className="btn btn-info">
+        <Link type="button" to="/signup" className="btn btn-info">
           Signup
         </Link>
       </div>

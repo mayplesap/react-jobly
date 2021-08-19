@@ -87,11 +87,11 @@ class JoblyApi {
     return user;
   }
 
-    /* update profile - returns updated user */
-    static async update(data, username){
-      let res = await this.request(`users/${username}`, data, "patch");
-      return res.user;
-    }
+  /* update profile - returns updated user */
+  static async update(data, username){
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
 
 }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { LOGIN_METHOD } from "./constants";
 
 /** LoginForm
  * 
@@ -28,8 +29,7 @@ function LoginForm({ handleSave }){
 
   function handleSubmit(evt){
     evt.preventDefault();
-    //TODO: if imported constant then 32 make more sense than just string
-    handleSave(formData, "login")
+    handleSave(formData, LOGIN_METHOD)
     history.push("/companies");
   }
 
@@ -39,15 +39,18 @@ function LoginForm({ handleSave }){
         <label htmlFor="username">Username</label>
         <input
           name="username"
+          id="username"
           onChange={handleChange}
           className="form-control"
         />
         <label htmlFor="password">Password</label>
         <input
           name="password"
+          id="password"
           type="password"
           onChange={handleChange}
           className="form-control"
+          autoComplete="on"
         />
         <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>

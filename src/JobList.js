@@ -7,7 +7,7 @@ import JobCard from "./JobCard"
  * props:
  * - jobs: array of objects
  * 
- * { Jobly, CompanyList } -> JobList
+ * { ListWithSearch, CompanyList } -> JobList
  */
 function JobList({ jobs }) {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
 import Navbar from './Navbar';
@@ -6,6 +6,7 @@ import JoblyApi from "./api";
 import UserContext from "./userContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
+import {LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD,} from "./constants";
 
 /** App
  * 
@@ -42,8 +43,7 @@ function App() {
   //better as separate methods = clearer way express what doing
   //3 diff actions
   //be consistent with css className
-  //TODO: make it a named function
-  useEffect(()=>{
+  useEffect(function handleForms(){
     async function signup() {
       let user = await JoblyApi.register(currentUser);
       setToken(JoblyApi.token);
@@ -59,11 +59,11 @@ function App() {
       setCurrentUser(user);
     }
 
-    if(login.method === "signup"){
+    if(login.method === SIGNUP_METHOD){
       signup();
-    } else if (login.method === "login") {
+    } else if (login.method === LOGIN_METHOD) {
       login();
-    } else if (login.method === "update") {
+    } else if (login.method === UPDATE_METHOD) {
       update();
     }
 

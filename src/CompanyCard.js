@@ -1,7 +1,6 @@
 import React from "react";
 
-/** TODO:
- * CompanyCard
+/*CompanyCard
  * 
  * prop:
  * - company: object

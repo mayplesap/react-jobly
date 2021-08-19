@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  * props:
  * - companies: array of company objects
  * 
- * Jobly -> CompanyList
+ * ListWithSearch -> CompanyList
  */
 function CompanyList({ companies }){
   
