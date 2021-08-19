@@ -33,7 +33,7 @@ function LoginForm({ handleSave, error }) {
     await handleSave(formData, LOGIN_METHOD)
     console.log("login error", error)
     if(!error){
-      history.push("/companies");
+      // history.push("/companies");
     }
   }
 

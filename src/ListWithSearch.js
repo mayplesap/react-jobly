@@ -22,6 +22,7 @@ function ListWithSearch({ listType }) {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("")
 
+  console.log("YOU HAVE REACHED LIST WITH SEARCH")
   function updateSearchTerm(word){
     setSearchTerm(word);
   }

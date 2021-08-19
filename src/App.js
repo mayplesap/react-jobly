@@ -7,6 +7,7 @@ import UserContext from "./userContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
+import { useHistory } from "react-router-dom";
 
 /** App
  * 
@@ -21,10 +22,11 @@ import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
  */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [login, setLogin] = useState({ isLogged: false, formMethod: "" });
-  // const [formInfo, setFormInfo] = useState({});
+  // const [login, setLogin] = useState({ isLogged: false, formMethod: "" });
+  const [formInfo, setFormInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   function logout() {
     setCurrentUser(null);
@@ -39,33 +41,36 @@ function App() {
    * sets currentUser, login, formInfo
    */
   async function save(data, method){
-    setCurrentUser(data);
-    // setFormInfo(data);
+    // setCurrentUser(data);
+    setFormInfo(data);
     setIsLoading(true);
-    setLogin({
-      isLogged: true,
-      formMethod: method
-    });
+    // setLogin({
+    //   isLogged: true,
+    //   formMethod: method
+    // });
 
-    if (login.formMethod === SIGNUP_METHOD) {
+    if (method === SIGNUP_METHOD) {
       await signup(data);
-    } else if (login.formMethod === LOGIN_METHOD) {
+    } else if (method === LOGIN_METHOD) {
       await loginUser(data);
-    } else if (login.formMethod === UPDATE_METHOD) {
+    } else if (method === UPDATE_METHOD) {
       await update(data);
     }
+    setIsLoading(false);
   }
-
+  
   async function loginUser(data) {
     try {
       let user = await JoblyApi.login(data);
-      setCurrentUser(user);
       localStorage.setItem("token", JoblyApi.token);
-      // history.push("/companies");
+      setCurrentUser(user);
+      history.push("/companies")
     } catch (err) {
       console.log("THIS IS AN ERROR", err);
       setError(err);
+      setCurrentUser(null);
     }
+    console.log("THIS IS CURRENT USER IN LOGIN FUNCTION ", currentUser);
     // setIsLoading(() => false);
   }
   async function signup(data) {
@@ -122,10 +127,10 @@ function App() {
 
   // }, [login, formInfo]);
 
-  useEffect(function loading(){
-    setIsLoading(false);
-    console.log("check loading", isLoading);
-  },[currentUser])
+  // useEffect(function loading(){
+  //   setIsLoading(false);
+  //   console.log("check loading", isLoading);
+  // },[formInfo])
 
   useEffect(function getUserOnMount() {
     let token = localStorage.getItem("token");
@@ -146,12 +151,12 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      
         <UserContext.Provider value={currentUser}>
           <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
           <Routes handleSave={save} token={JoblyApi.token} error={error} />
         </UserContext.Provider>
-      </BrowserRouter>
+      
     </div>
   );
 }
