@@ -65,8 +65,8 @@ class JoblyApi {
   // obviously, you'll add a lot here ...
 
   /* getUser - decode token into payload and gets user from database */
-  static async getUser(token){
-    let payload = await JWT.decode(token);
+  static async getUser(){
+    let payload = await JWT.decode(this.token);
     console.log("PAYLOAD", payload);
     let res = await this.request(`users/${payload.username}`);
     console.log("RESPONSE", res);

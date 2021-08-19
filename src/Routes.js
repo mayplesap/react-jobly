@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ListWithSearch from "./ListWithSearch";
 import CompanyDetail from "./CompanyDetail";
@@ -6,6 +5,7 @@ import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from './ProfileForm';
+import { useContext } from 'react';
 import UserContext from './userContext';
 import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 
@@ -21,7 +21,6 @@ import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
  */
 
 function Routes({ handleSave }) {
-
   const user = useContext(UserContext);
 
   if (!user) {
@@ -40,9 +39,7 @@ function Routes({ handleSave }) {
       </Switch>
     )
   }
-//TODO: listType need be constants - passing down something that is very specific
-//can put in a file where can import or in companyList/joblist
-//from a single place where pulling them in 
+
   return (
     <Switch className="Routes">
 

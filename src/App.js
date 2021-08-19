@@ -24,6 +24,7 @@ function App() {
   // const [token, setToken] = useState(JoblyApi.token);
   const [login, setLogin] = useState({isLogged: false, formMethod: ""});
   const [formInfo, setFormInfo] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   //localStorage.getItem()
 
@@ -52,21 +53,18 @@ function App() {
       let user = await JoblyApi.register(formInfo);
       // setToken(JoblyApi.token);
       setCurrentUser(user);
-      localStorage.setItem("token",JoblyApi.token);
     }
     async function loginUser(data) {
       let user = await JoblyApi.login(data);
       // setToken(JoblyApi.token);
       setCurrentUser(user);
       localStorage.setItem("token",JoblyApi.token);
-      console.log("TOKEN ON LOGIN",localStorage.getItem("token"))
     }
     async function update(data){
       let username = await JoblyApi(JoblyApi.token)
       let user = await JoblyApi.update(data, username);
       setCurrentUser(user);
     }
-    console.log(login);
     if(login.formMethod === SIGNUP_METHOD){
       signup();
     } else if (login.formMethod === LOGIN_METHOD) {
@@ -75,17 +73,25 @@ function App() {
       update();
     }
 
-  }, [login, formInfo])
+  }, [login, formInfo]);
 
   useEffect(function getUserOnMount(){
     let token = localStorage.getItem("token");
-    console.log("MOUNTING TOKEN",token);
     async function getUserWithToken(token){
-      const user = await JoblyApi.getUser(token);
+      JoblyApi.token = token;
+      const user = await JoblyApi.getUser();
       setCurrentUser(user);
+      setIsLoading(false);
     }
-    if(token) getUserWithToken(token);
-  },[])
+    if(token) {
+      getUserWithToken(token);
+    } else {
+      setIsLoading(false);
+    }
+    
+  },[]);
+  
+  if(isLoading) return <p className="text-center mt-5">Loading...</p>
 
   return (
     <div className="App">
