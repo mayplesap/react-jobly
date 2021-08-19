@@ -14,6 +14,7 @@ import {LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD,} from "./constants";
  * - currentUser: object
  * - token: jwt token from backend
  * - login: object like {isLogged: boolean, method: string}
+ * - formInfo: object
  * 
  * context:
  * - currentUser: context provider
@@ -21,31 +22,31 @@ import {LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD,} from "./constants";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(JoblyApi.token);
-  const [login, setLogin] = useState({isLogged: false, method: ""});
+  const [login, setLogin] = useState({isLogged: false, formMethod: ""});
+  const [formInfo, setFormInfo] = useState({});
 
   function logout() {
     setCurrentUser(null)
   }
 
-  //need docstring cause no idea what method is
-  //make consts for signin, login, update
-  //so no typo and have wrong thing and help with self documenting TODO:
+  /** save function for login, signup, edit profile
+   * - data: the formData
+   * - method: object like { isLogged: boolean, formMethod: string constant}
+   * 
+   * sets currentUser, login, formInfo
+   */
   function save(data, method){
     setCurrentUser(data);
+    setFormInfo(currentUser);
     setLogin({
       isLogged: true,
-      method: method
+      formMethod: method
     });
   }
 
-  //if currentuser change but not changes login --> not actually log in
-  //need in dependency list but missing something help prevent infinite loop
-  //better as separate methods = clearer way express what doing
-  //3 diff actions
-  //be consistent with css className
   useEffect(function handleForms(){
     async function signup() {
-      let user = await JoblyApi.register(currentUser);
+      let user = await JoblyApi.register(formInfo);
       setToken(JoblyApi.token);
       setCurrentUser(user);
     }
@@ -55,19 +56,19 @@ function App() {
       setCurrentUser(user);
     }
     async function update(data){
-      let user = await JoblyApi.update(data, currentUser.username);
+      let user = await JoblyApi.update(data, formInfo.username);
       setCurrentUser(user);
     }
 
-    if(login.method === SIGNUP_METHOD){
+    if(login.formMethod === SIGNUP_METHOD){
       signup();
-    } else if (login.method === LOGIN_METHOD) {
-      login();
-    } else if (login.method === UPDATE_METHOD) {
+    } else if (login.formMethod === LOGIN_METHOD) {
+      login(formInfo);
+    } else if (login.formMethod === UPDATE_METHOD) {
       update();
     }
 
-  },[login])
+  }, [login, formInfo])
 
   return (
     <div className="App">

@@ -34,7 +34,7 @@ function LoginForm({ handleSave }){
   }
 
   return (
-    <form onSubmit={handleSubmit} className="container mt-3">
+    <form onSubmit={handleSubmit} className="LoginForm container mt-3">
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input

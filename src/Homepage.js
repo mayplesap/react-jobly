@@ -13,7 +13,7 @@ function Homepage() {
   const user = useContext(UserContext); 
 
   return (
-    <div className="text-center mt-5 container">
+    <div className="Homepage text-center mt-5 container">
       <h1>Jobly</h1>
       <p>All the jobs in one, convenient place.</p>
       {user? 

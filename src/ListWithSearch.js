@@ -58,7 +58,7 @@ function ListWithSearch({ listType }) {
   if(isLoading) return <h2 className="text-center mt-5">Loading...</h2>
 
   return (
-    <div className="container" >
+    <div className="ListWithSearch container" >
       <SearchForm handleSearch={updateSearchTerm} />
       {listType === "companies"
         ? <CompanyList companies={list} />

@@ -28,7 +28,7 @@ function CompanyDetail(){
 
   if(isLoading) return <h2 className="text-center mt-5">Loading...</h2>
   return (
-    <div className="container mt-5">
+    <div className="CompanyDetail container mt-5">
       <h2>{company.name}</h2>
       <h6>{company.description}</h6>
       <JobList jobs={company.jobs} />

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function CompanyList({ companies }){
   
   return (
-    <div>
+    <div className="CompanyList">
     { companies.map( company => (
     <Link 
       key={company.handle} 

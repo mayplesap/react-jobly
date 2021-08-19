@@ -26,7 +26,7 @@ function Routes({ handleSave }) {
 
   if (!user) {
     return (
-      <Switch>
+      <Switch className="Routes">
         <Route exact path="/login">
           <LoginForm handleSave={handleSave} />
         </Route>
@@ -44,7 +44,7 @@ function Routes({ handleSave }) {
 //can put in a file where can import or in companyList/joblist
 //from a single place where pulling them in 
   return (
-    <Switch>
+    <Switch className="Routes">
 
       <Route exact path="/login">
         <LoginForm handleSave={handleSave} />

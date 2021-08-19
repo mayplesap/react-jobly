@@ -10,7 +10,7 @@ function JobCard({ job, handleSave, isApplied }) {
   // let currUser = ...;//TODO:
 
   return (
-    <div className="row border shadow mt-3 rounded">
+    <div className="JobCard row border shadow mt-3 rounded">
       <h3 className="col-12">{job.title}</h3>
       <h4 className="col-12 font-weight-normal">{job.companyHandle}</h4>
       {job.salary

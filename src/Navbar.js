@@ -20,9 +20,8 @@ import { NavLink } from "react-router-dom";
  * App -> Navbar
  */
 function Navbar({ currentUser, logout }) {
-//could make into 2 functions 
   return (
-    <nav className="navbar navbar-expand navbar-light bg-light p-0">
+    <nav className="NavBar navbar navbar-expand navbar-light bg-light p-0">
     <div className="container-fluid p-0">
       <NavLink className="nav-link" exact to="/">
         Jobly

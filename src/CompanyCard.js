@@ -10,7 +10,7 @@ import React from "react";
 
 function CompanyCard({ company }) {
   return (
-    <div className="row border shadow mt-3 rounded">
+    <div className="CompanyCard row border shadow mt-3 rounded">
       <div className="col-9">
         <h3>{company.name}</h3>
       </div>
