@@ -28,9 +28,10 @@ function LoginForm({ handleSave, error }) {
     ))
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave(formData, LOGIN_METHOD)
+    await handleSave(formData, LOGIN_METHOD)
+    console.log("login error", error)
     if(!error){
       history.push("/companies");
     }

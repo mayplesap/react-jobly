@@ -26,7 +26,7 @@ function Navbar({ currentUser, token, logout }) {
       <NavLink className="nav-link" exact to="/">
         Jobly
       </NavLink>
-      {(token) ?
+      {(token && currentUser) ?
         (
 
           <ul className="nav navabar-nav">
@@ -47,7 +47,7 @@ function Navbar({ currentUser, token, logout }) {
             </li>
             <li>
               <NavLink className="nav-item nav-link" exact to="logout" onClick={logout}>
-                Log out {currentUser.username}
+                Logout {currentUser.username}
               </NavLink>
             </li>
           </ul>

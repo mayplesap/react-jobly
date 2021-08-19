@@ -14,7 +14,7 @@ import { SIGNUP_METHOD } from "./constants";
  * 
  * Routes -> SignupForm
  */
-function SignupForm({ handleSave }){
+function SignupForm({ handleSave, error}){
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
@@ -28,11 +28,14 @@ function SignupForm({ handleSave }){
     ))
   }
 
-  function handleSubmit(evt){
+  async function handleSubmit(evt){
     evt.preventDefault();
-    handleSave(formData, SIGNUP_METHOD);
-    history.push("/companies");
+    await handleSave(formData, SIGNUP_METHOD);
+    if(!error){
+      history.push("/companies");
+    }  
   }
+  
   
   return (
     <form onSubmit={handleSubmit} className="SignupForm container mt-3">

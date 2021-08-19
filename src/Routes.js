@@ -23,26 +23,26 @@ import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 function Routes({ handleSave, token, error }) {
   const user = useContext(UserContext);
   console.log("THIS IS THE ERROR IN ROUTE",error);
-  if (!token || error){
+  // if (!token || error){
+  //   return (
+  //     <Switch>
+  //       <Route exact path="/login">
+  //         <LoginForm handleSave={handleSave} error={error}/>
+  //       </Route>
+  //       <Route exact path="/signup">
+  //         <SignupForm handleSave={handleSave} error={error}/>
+  //       </Route>
+  //     </Switch>
+  //   )
+  // } 
+  if (!user || !token) {
     return (
-      <Switch>
+      <Switch className="Routes">
         <Route exact path="/login">
           <LoginForm handleSave={handleSave} error={error}/>
         </Route>
         <Route exact path="/signup">
           <SignupForm handleSave={handleSave} error={error}/>
-        </Route>
-      </Switch>
-    )
-  } 
-  if (!user) {
-    return (
-      <Switch className="Routes">
-        <Route exact path="/login">
-          <LoginForm handleSave={handleSave} />
-        </Route>
-        <Route exact path="/signup">
-          <SignupForm handleSave={handleSave} />
         </Route>
         <Route exact path="/">
           <Homepage />
@@ -51,7 +51,7 @@ function Routes({ handleSave, token, error }) {
       </Switch>
     )
   }
-
+console.log("middle of returns in routes");
   return (
     <Switch className="Routes">
 
