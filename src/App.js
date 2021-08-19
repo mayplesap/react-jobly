@@ -6,7 +6,8 @@ import JoblyApi from "./api";
 import UserContext from "./userContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
-import {LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD,} from "./constants";
+import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
+import Alert from "./Alert";
 
 /** App
  * 
@@ -21,12 +22,10 @@ import {LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD,} from "./constants";
  */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  // const [token, setToken] = useState(JoblyApi.token);
-  const [login, setLogin] = useState({isLogged: false, formMethod: ""});
+  const [login, setLogin] = useState({ isLogged: false, formMethod: "" });
   const [formInfo, setFormInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
-  //localStorage.getItem()
+  const [error, setError] = useState(null);
 
   function logout() {
     setCurrentUser(null);
@@ -39,7 +38,7 @@ function App() {
    * 
    * sets currentUser, login, formInfo
    */
-  function save(data, method){
+  function save(data, method) {
     setCurrentUser(data);
     setFormInfo(data);
     setLogin({
@@ -48,24 +47,29 @@ function App() {
     });
   }
 
-  useEffect(function handleForms(){
+  useEffect(function handleForms() {
     async function signup() {
       let user = await JoblyApi.register(formInfo);
-      // setToken(JoblyApi.token);
       setCurrentUser(user);
     }
     async function loginUser(data) {
-      let user = await JoblyApi.login(data);
-      // setToken(JoblyApi.token);
-      setCurrentUser(user);
-      localStorage.setItem("token",JoblyApi.token);
+
+      try {
+        let user = await JoblyApi.login(data);
+        setCurrentUser(user);
+        localStorage.setItem("token", JoblyApi.token);
+      } catch (err) {
+        console.log("THIS IS AN ERROR", err);
+        setError(err);
+      }
+
     }
-    async function update(data){
+    async function update(data) {
       let username = await JoblyApi(JoblyApi.token)
       let user = await JoblyApi.update(data, username);
       setCurrentUser(user);
     }
-    if(login.formMethod === SIGNUP_METHOD){
+    if (login.formMethod === SIGNUP_METHOD) {
       signup();
     } else if (login.formMethod === LOGIN_METHOD) {
       loginUser(formInfo);
@@ -75,30 +79,29 @@ function App() {
 
   }, [login, formInfo]);
 
-  useEffect(function getUserOnMount(){
+  useEffect(function getUserOnMount() {
     let token = localStorage.getItem("token");
-    async function getUserWithToken(token){
+    async function getUserWithToken(token) {
       JoblyApi.token = token;
       const user = await JoblyApi.getUser();
       setCurrentUser(user);
       setIsLoading(false);
     }
-    if(token) {
+    if (token) {
       getUserWithToken(token);
     } else {
       setIsLoading(false);
     }
-    
-  },[]);
-  
-  if(isLoading) return <p className="text-center mt-5">Loading...</p>
+  }, []);
+
+  if (isLoading) return <p className="text-center mt-5">Loading...</p>
 
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={ currentUser }>
-          <Navbar currentUser={currentUser} logout={logout}/>
-          <Routes handleSave={save} />
+        <UserContext.Provider value={currentUser}>
+          <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
+          <Routes handleSave={save} token={JoblyApi.token} error={error}/>
         </UserContext.Provider>
       </BrowserRouter>
     </div>

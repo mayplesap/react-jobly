@@ -1,5 +1,6 @@
 import CompanyCard from "./CompanyCard";
 import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid"
 
 /** CompanyList
  * 
@@ -14,7 +15,7 @@ function CompanyList({ companies }){
     <div className="CompanyList">
     { companies.map( company => (
     <Link 
-      key={company.handle} 
+      key={uuid()} 
       to={`/companies/${company.handle}`} 
       className="text-decoration-none text-reset">
     <CompanyCard 

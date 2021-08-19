@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { LOGIN_METHOD } from "./constants";
+import Alert from "./Alert";
 
 /** LoginForm
  * 
@@ -13,13 +14,13 @@ import { LOGIN_METHOD } from "./constants";
  * 
  * Routes -> LoginForm
  */
-function LoginForm({ handleSave }){
+function LoginForm({ handleSave, error }) {
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
-  function handleChange(evt){
-    const {name, value} = evt.target;
-    setFormData( oldData => (
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(oldData => (
       {
         ...oldData,
         [name]: value,
@@ -27,10 +28,12 @@ function LoginForm({ handleSave }){
     ))
   }
 
-  function handleSubmit(evt){
+  function handleSubmit(evt) {
     evt.preventDefault();
     handleSave(formData, LOGIN_METHOD)
-    history.push("/companies");
+    if(!error){
+      history.push("/companies");
+    }
   }
 
   return (
@@ -52,6 +55,11 @@ function LoginForm({ handleSave }){
           className="form-control"
           autoComplete="on"
         />
+        {error ?
+          <Alert message={error} />
+          :
+          null
+        }
         <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>
 

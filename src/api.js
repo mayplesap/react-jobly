@@ -21,8 +21,8 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -39,7 +39,7 @@ class JoblyApi {
 
   output: { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
   */
-  static async getCompanies(searchFilter={}){
+  static async getCompanies(searchFilter = {}) {
     let res = await this.request(`companies`, searchFilter);
     return res.companies;
   }
@@ -57,24 +57,22 @@ class JoblyApi {
    * 
    * output: { jobs: [ { id, title, salary, equity, companyHandle, companyName },...] }
   */
- static  async getJobs(searchFilter={}) {
-   let res = await this.request(`jobs`, searchFilter);
-   return res.jobs;
- }
+  static async getJobs(searchFilter = {}) {
+    let res = await this.request(`jobs`, searchFilter);
+    return res.jobs;
+  }
 
   // obviously, you'll add a lot here ...
 
   /* getUser - decode token into payload and gets user from database */
-  static async getUser(){
+  static async getUser() {
     let payload = await JWT.decode(this.token);
-    console.log("PAYLOAD", payload);
     let res = await this.request(`users/${payload.username}`);
-    console.log("RESPONSE", res);
     return res.user;
   }
 
   /* signup - sets token & returns user */
-  static async register(data){
+  static async register(data) {
     let res = await this.request(`auth/register`, data, "post");
     this.token = res.token;
     let user = await this.getUser(this.token);
@@ -82,7 +80,7 @@ class JoblyApi {
   }
 
   /* login - sets token & return user*/
-  static async login(data){
+  static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
     this.token = res.token;
     let user = await this.getUser(this.token);
@@ -90,7 +88,7 @@ class JoblyApi {
   }
 
   /* update profile - returns updated user */
-  static async update(data, username){
+  static async update(data, username) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
