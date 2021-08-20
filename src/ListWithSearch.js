@@ -72,6 +72,7 @@ function ListWithSearch({ listType }) {
     }
   }, [searchTerm, listType])
 
+  //make new useEffect to update search word when URL changes, useLocation(from react-router-dom)
   if (isLoading) return <h2 className="text-center mt-5">Loading...</h2>
 
   return (
