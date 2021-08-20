@@ -3,6 +3,7 @@ import Routes from './Routes';
 import Navbar from './Navbar';
 import JoblyApi from "./api";
 import UserContext from "./userContext";
+import ErrorContext from "./errorContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
@@ -12,9 +13,8 @@ import { useHistory } from "react-router-dom";
  * 
  * state:
  * - currentUser: object
- * - token: jwt token from backend
- * - login: object like {isLogged: boolean, method: string}
- * - formInfo: object
+ * - isLoading: boolean
+ * - error: holds error message
  * 
  * context:
  * - currentUser: context provider
@@ -34,9 +34,9 @@ function App() {
 
   /** save function for login, signup, edit profile
    * - data: the formData
-   * - method: object like { isLogged: boolean, formMethod: string constant}
+   * - method: string
    * 
-   * sets currentUser, login, formInfo
+   * sets isLoading
    */
   async function save(data, method){
     setIsLoading(true);
@@ -52,6 +52,15 @@ function App() {
     
   }
   
+  /** loginUser - calls Api 
+   * if correct info
+   * - sets localStorage
+   * - setCurrentUser
+   * - redirect to "/companies"
+   * 
+   * if error
+   * - setsError
+   */
   async function loginUser(data) {
     try {
       let user = await JoblyApi.login(data);
@@ -64,6 +73,16 @@ function App() {
       setCurrentUser(null);
     }
   }
+
+  /** signup - calls Api 
+   * if no incorrect info
+   * - sets localStorage
+   * - setCurrentUser
+   * - redirect to "/companies"
+   * 
+   * if error
+   * - setsError
+   */
   async function signup(data) {
     try{
       let user = await JoblyApi.register(data);
@@ -77,6 +96,13 @@ function App() {
     }
   }
 
+  /** update - calls Api 
+   * if no incorrect info
+   * - setCurrentUser
+   * 
+   * if error
+   * - setsError
+   */
   async function update(data) {
     try{
       let user = await JoblyApi.update(data, currentUser.username);
@@ -88,6 +114,7 @@ function App() {
     }
   }
 
+  /** keeps user logged in when refresh */
   useEffect(function getUserOnMount() {
     let token = localStorage.getItem("token");
     async function getUserWithToken(token) {
@@ -109,8 +136,10 @@ function App() {
     <div className="App">
       
         <UserContext.Provider value={currentUser}>
-          <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
-          <Routes handleSave={save} token={JoblyApi.token} error={error} updated={updated} setUpdated={setUpdated}/>
+          <ErrorContext.Provider value={error}>
+            <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
+            <Routes handleSave={save} token={JoblyApi.token} updated={updated} setUpdated={setUpdated}/>
+          </ErrorContext.Provider>
         </UserContext.Provider>
       
     </div>

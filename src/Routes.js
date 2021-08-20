@@ -20,17 +20,17 @@ import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
  * App -> Routes
  */
 
-function Routes({ handleSave, error, updated, setUpdated}) {
+function Routes({ handleSave, updated, setUpdated}) {
   const user = useContext(UserContext);
 
   if (!user) {
     return (
       <Switch className="Routes">
         <Route exact path="/login">
-          <LoginForm handleSave={handleSave} error={error}/>
+          <LoginForm handleSave={handleSave}/>
         </Route>
         <Route exact path="/signup">
-          <SignupForm handleSave={handleSave} error={error}/>
+          <SignupForm handleSave={handleSave}/>
         </Route>
         <Route exact path="/">
           <Homepage />
@@ -43,7 +43,7 @@ function Routes({ handleSave, error, updated, setUpdated}) {
   return (
     <Switch className="Routes">
       <Route exact path="/profile">
-        <ProfileForm handleSave={handleSave} error={error} updated={updated} setUpdated={setUpdated}/>
+        <ProfileForm handleSave={handleSave} updated={updated} setUpdated={setUpdated}/>
       </Route>
       <Route exact path="/companies">
         <ListWithSearch listType={LIST_TYPE_COMPANIES} />

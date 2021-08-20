@@ -1,14 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import UserContext from './userContext';
+import ErrorContext from './errorContext';
 import { UPDATE_METHOD } from "./constants";
 import Alert from "./Alert";
 
 /** ProfileForm
  * 
- * TODO: alert for successfully update or errors
- * 
  * props:
  * - handleSave: function
+ * - error: string
  * 
  * state:
  * - formData
@@ -18,16 +18,15 @@ import Alert from "./Alert";
  * 
  * Routes -> ProfileForm
  */
-function ProfileForm({ handleSave, error, updated, setUpdated }) {
+function ProfileForm({ handleSave, updated, setUpdated }) {
   const currentUser = useContext(UserContext);
+  const error = useContext(ErrorContext);
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     password: currentUser.password,
     email: currentUser.email,
   });
-  // const [submitted, setSubmitted] = useState(false);
-
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -42,7 +41,6 @@ function ProfileForm({ handleSave, error, updated, setUpdated }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await handleSave(formData, UPDATE_METHOD);
-    // setSubmitted(true);
   }
 
   useEffect(function clearMessageOnUnmount() {

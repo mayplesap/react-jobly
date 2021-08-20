@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import ErrorContext from "./errorContext";
 import { LOGIN_METHOD } from "./constants";
 import Alert from "./Alert";
 
 /** LoginForm
  * 
- * TODO: alert
  * props:
  * - handleSave: function
+ * - error: string
  * 
  * state: 
  * - formData: objec
  * 
  * Routes -> LoginForm
  */
-function LoginForm({ handleSave, error }) {
+function LoginForm({ handleSave }) {
   const [formData, setFormData] = useState({});
+  const error = useContext(ErrorContext);
 
   function handleChange(evt) {
     const { name, value } = evt.target;

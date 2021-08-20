@@ -1,7 +1,7 @@
 import React from "react";
 import JobCard from "./JobCard"
 import { v4 as uuid } from "uuid"
-//TODO: { userState, useEffect } for apply
+//TODO: { userState, useEffect } for apply button
 
 /** JobList
  * 

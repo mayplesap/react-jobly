@@ -7,8 +7,7 @@ import { useState } from "react";
  * 
  * Jobly -> SearchForm
  */
-function SearchForm({handleSearch}){
-
+function SearchForm({ handleSearch }){
   const [formData, setFormData] = useState({});
 
   function handleChange(evt){

@@ -1,13 +1,15 @@
 import React from "react";
 
 /** JobCard
+ *  TODO: handlesave, isapplied --> for apply button
  * 
- * TODO: handlesave, isapplied
+ * props:
+ * - job: object
  * 
  * JobList -> JobCard
  */
 function JobCard({ job, handleSave, isApplied }) {
-  // let currUser = ...;//TODO:
+  // let currUser = ...;
 
   return (
     <div className="JobCard row border shadow mt-3 rounded">

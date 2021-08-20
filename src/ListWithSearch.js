@@ -52,7 +52,7 @@ function ListWithSearch({ listType }) {
       setList( newList );
     }
     if(searchTerm)
-    updateList();
+      updateList();
   },[searchTerm, listType])
 
   if(isLoading) return <h2 className="text-center mt-5">Loading...</h2>

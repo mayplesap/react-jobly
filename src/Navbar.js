@@ -16,6 +16,7 @@ import { NavLink } from "react-router-dom";
  * props:
  * - currentUser: object
  * - logout: function to logout
+ * - token
  * 
  * App -> Navbar
  */

@@ -1,21 +1,23 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { SIGNUP_METHOD } from "./constants";
+import ErrorContext from "./errorContext";
 import Alert from "./Alert";
 
 /** Signup Form
- * TODO: Alert
  * 
  * props:
  * - handleSave: function
+ * - error: string
  * 
  * state:
  * - formData
  * 
  * Routes -> SignupForm
  */
-function SignupForm({ handleSave, error}){
+function SignupForm({ handleSave }){
   const [formData, setFormData] = useState({});
+  const error = useContext(ErrorContext);
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -31,7 +33,6 @@ function SignupForm({ handleSave, error}){
     evt.preventDefault();
     await handleSave(formData, SIGNUP_METHOD);
   }
-  
   
   return (
     <form onSubmit={handleSubmit} className="SignupForm container mt-3">
