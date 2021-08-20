@@ -18,96 +18,94 @@ import Alert from "./Alert";
  * 
  * Routes -> ProfileForm
  */
-function ProfileForm({ handleSave, error }){
+function ProfileForm({ handleSave, error, updated, setUpdated }) {
   const currentUser = useContext(UserContext);
-  const [formData, setFormData] = useState(currentUser);
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    password: currentUser.password,
+    email: currentUser.email,
+  });
+  // const [submitted, setSubmitted] = useState(false);
 
-  useEffect(function onUnmount(){
-    return setSubmitted(false)
-  })
 
-  function handleChange(evt){
-    const {name, value} = evt.target;
-    setFormData( oldData => (
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(oldData => (
       {
-        firstName: oldData.firstName,
-        lastName: oldData.lastName,
-        password: oldData.password,
-        email: oldData.email,
+        ...oldData,
         [name]: value,
       }
     ))
   }
 
-  async function handleSubmit(evt){
+  async function handleSubmit(evt) {
     evt.preventDefault();
     await handleSave(formData, UPDATE_METHOD);
-    setSubmitted(true);
+    // setSubmitted(true);
   }
 
-  // function message() {
-  //   console.log("Messgae", error)
-  //   if(submitted) {
-  //     return <Alert message="Successfully Updated" type="success" />
-  //   } 
-  //   return <Alert message={error} type="danger" />
-  // }
+  useEffect(function clearMessageOnUnmount() {
+    return function unmount() {
+      setUpdated(false);
+    }
+  }, [setUpdated])
 
   return (
     <form onSubmit={handleSubmit} className="ProfileForm container mt-3">
       <div className="form-group">
-      <label>Username</label>
-      <p>{currentUser.username}</p>
-      <label htmlFor="firstName">First Name</label>
-      <input
-        name="firstName"
-        id="firstName"
-        value={formData.firstName}
-        onChange={handleChange}
-        className="form-control"
+        <label>Username</label>
+        <p>{currentUser.username}</p>
+        <label htmlFor="firstName">First Name</label>
+        <input
+          name="firstName"
+          id="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          className="form-control"
         />
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        name="lastName"
-        id="lastName"
-        value={formData.lastName}
-        onChange={handleChange}
-        className="form-control"
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          name="lastName"
+          id="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          className="form-control"
         />
-      <label htmlFor="email">Email</label>
-      <input
-        name="email"
-        id="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        className="form-control"
-      />
-      <label htmlFor="password">Comfirm Password to make changes:</label>
-      <input
-        name="password"
-        id="password"
-        type="password"
-        onChange={handleChange}
-        className="form-control"
-        required="required"
-        autoComplete="on"
-      />
-      {error
-      ?
-      <Alert message={error} type="danger" />
-      :
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          id="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="form-control"
+        />
+        <label htmlFor="password">Comfirm Password to make changes:</label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          onChange={handleChange}
+          className="form-control"
+          required="required"
+          autoComplete="on"
+        />
+        {error
+          ?
+          <Alert message={error} type="danger" />
+          :
           null
-      }
-      {submitted
-      ?
-       <Alert message="Successfully Updated" type="success" />
-      :
-      null
-      }
+        }
+        {updated
+          ?
+          <Alert message="Successfully Updated" type="success" />
+          :
+          null
+        }
 
-      <button type="submit" className="btn btn-primary mt-3">Submit</button>
+
+        <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>
     </form>
   )

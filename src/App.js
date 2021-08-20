@@ -23,6 +23,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [updated, setUpdated] = useState(false);
   const history = useHistory();
 
   function logout() {
@@ -77,11 +78,11 @@ function App() {
   }
 
   async function update(data) {
-    console.log("DTAAA", data)
     try{
       let user = await JoblyApi.update(data, currentUser.username);
       setError(null);
       setCurrentUser(user);
+      setUpdated(true);
     } catch(err) {
       setError(err);
     }
@@ -109,7 +110,7 @@ function App() {
       
         <UserContext.Provider value={currentUser}>
           <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
-          <Routes handleSave={save} token={JoblyApi.token} error={error} />
+          <Routes handleSave={save} token={JoblyApi.token} error={error} updated={updated} setUpdated={setUpdated}/>
         </UserContext.Provider>
       
     </div>

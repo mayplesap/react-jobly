@@ -20,22 +20,9 @@ import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
  * App -> Routes
  */
 
-function Routes({ handleSave, error }) {
+function Routes({ handleSave, error, updated, setUpdated}) {
   const user = useContext(UserContext);
-  console.log("THIS IS CURRENT USER IN ROUTES ", user);
-  console.log("THIS IS THE ERROR IN ROUTE",error);
-  // if (!token || error){
-  //   return (
-  //     <Switch>
-  //       <Route exact path="/login">
-  //         <LoginForm handleSave={handleSave} error={error}/>
-  //       </Route>
-  //       <Route exact path="/signup">
-  //         <SignupForm handleSave={handleSave} error={error}/>
-  //       </Route>
-  //     </Switch>
-  //   )
-  // } 
+
   if (!user) {
     return (
       <Switch className="Routes">
@@ -53,11 +40,10 @@ function Routes({ handleSave, error }) {
     )
   }
 
-console.log("middle of returns in routes");
   return (
     <Switch className="Routes">
       <Route exact path="/profile">
-        <ProfileForm handleSave={handleSave} error={error}/>
+        <ProfileForm handleSave={handleSave} error={error} updated={updated} setUpdated={setUpdated}/>
       </Route>
       <Route exact path="/companies">
         <ListWithSearch listType={LIST_TYPE_COMPANIES} />
