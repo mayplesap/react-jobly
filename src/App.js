@@ -5,7 +5,6 @@ import JoblyApi from "./JoblyApi";
 import UserContext from "./userContext";
 import ErrorContext from "./errorContext";
 import UpdateContext from "./updateContext";
-import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
 import { useHistory } from "react-router-dom";
