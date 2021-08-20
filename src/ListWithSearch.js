@@ -1,7 +1,7 @@
 import SearchForm from "./SearchForm";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
-import JoblyApi from "./api";
+import JoblyApi from "./JoblyApi";
 import { useState, useEffect } from "react";
 import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 

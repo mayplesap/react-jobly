@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Routes from './Routes';
 import Navbar from './Navbar';
-import JoblyApi from "./api";
+import JoblyApi from "./JoblyApi";
 import UserContext from "./userContext";
 import ErrorContext from "./errorContext";
 import UpdateContext from "./updateContext";

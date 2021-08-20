@@ -7,7 +7,6 @@ import SignupForm from "./SignupForm";
 import ProfileForm from './ProfileForm';
 import { useContext } from 'react';
 import UserContext from './userContext';
-import UpdateContext from './updateContext';
 import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 
 /** Routes
