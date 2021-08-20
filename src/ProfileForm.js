@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UserContext from './userContext';
 import { UPDATE_METHOD } from "./constants";
+import Alert from "./Alert";
 
 /** ProfileForm
  * 
@@ -17,25 +18,41 @@ import { UPDATE_METHOD } from "./constants";
  * 
  * Routes -> ProfileForm
  */
-function ProfileForm({ handleSave}){
+function ProfileForm({ handleSave, error }){
   const currentUser = useContext(UserContext);
   const [formData, setFormData] = useState(currentUser);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(function onUnmount(){
+    return setSubmitted(false)
+  })
 
   function handleChange(evt){
     const {name, value} = evt.target;
     setFormData( oldData => (
       {
-        ...oldData,
+        firstName: oldData.firstName,
+        lastName: oldData.lastName,
+        password: oldData.password,
+        email: oldData.email,
         [name]: value,
       }
     ))
   }
 
-  function handleSubmit(evt){
+  async function handleSubmit(evt){
     evt.preventDefault();
-    handleSave(formData, UPDATE_METHOD);
-    console.log("sucessfully updatdddd!")
+    await handleSave(formData, UPDATE_METHOD);
+    setSubmitted(true);
   }
+
+  // function message() {
+  //   console.log("Messgae", error)
+  //   if(submitted) {
+  //     return <Alert message="Successfully Updated" type="success" />
+  //   } 
+  //   return <Alert message={error} type="danger" />
+  // }
 
   return (
     <form onSubmit={handleSubmit} className="ProfileForm container mt-3">
@@ -63,7 +80,7 @@ function ProfileForm({ handleSave}){
         name="email"
         id="email"
         type="email"
-        vslue={formData.email}
+        value={formData.email}
         onChange={handleChange}
         className="form-control"
       />
@@ -77,6 +94,19 @@ function ProfileForm({ handleSave}){
         required="required"
         autoComplete="on"
       />
+      {error
+      ?
+      <Alert message={error} type="danger" />
+      :
+          null
+      }
+      {submitted
+      ?
+       <Alert message="Successfully Updated" type="success" />
+      :
+      null
+      }
+
       <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>
     </form>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { LOGIN_METHOD } from "./constants";
 import Alert from "./Alert";
 
@@ -16,7 +15,6 @@ import Alert from "./Alert";
  */
 function LoginForm({ handleSave, error }) {
   const [formData, setFormData] = useState({});
-  const history = useHistory();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -31,10 +29,6 @@ function LoginForm({ handleSave, error }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await handleSave(formData, LOGIN_METHOD)
-    console.log("login error", error)
-    if(!error){
-      // history.push("/companies");
-    }
   }
 
   return (
@@ -57,7 +51,7 @@ function LoginForm({ handleSave, error }) {
           autoComplete="on"
         />
         {error ?
-          <Alert message={error} />
+          <Alert message={error} type="danger" />
           :
           null
         }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { SIGNUP_METHOD } from "./constants";
+import Alert from "./Alert";
 
 /** Signup Form
  * TODO: Alert
@@ -16,7 +16,6 @@ import { SIGNUP_METHOD } from "./constants";
  */
 function SignupForm({ handleSave, error}){
   const [formData, setFormData] = useState({});
-  const history = useHistory();
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -31,9 +30,6 @@ function SignupForm({ handleSave, error}){
   async function handleSubmit(evt){
     evt.preventDefault();
     await handleSave(formData, SIGNUP_METHOD);
-    if(!error){
-      history.push("/companies");
-    }  
   }
   
   
@@ -78,6 +74,11 @@ function SignupForm({ handleSave, error}){
         onChange={handleChange}
         className="form-control"
       />
+      {error ?
+        <Alert message={error} type="danger"/>
+        :
+        null
+      }
       <button type="submit" className="btn btn-primary mt-3">Submit</button>
       </div>
     </form>
