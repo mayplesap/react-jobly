@@ -7,7 +7,9 @@ import Alert from "./Alert";
  * 
  * props:
  * - handleSave: function
- * - error: string
+ * 
+ * context:
+ * - error: ErrorContext
  * 
  * state: 
  * - formData: objec

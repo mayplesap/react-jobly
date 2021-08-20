@@ -7,6 +7,7 @@ import SignupForm from "./SignupForm";
 import ProfileForm from './ProfileForm';
 import { useContext } from 'react';
 import UserContext from './userContext';
+import UpdateContext from './updateContext';
 import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
 
 /** Routes
@@ -20,7 +21,7 @@ import { LIST_TYPE_COMPANIES, LIST_TYPE_JOBS } from "./constants";
  * App -> Routes
  */
 
-function Routes({ handleSave, updated, setUpdated}) {
+function Routes({ handleSave}) {
   const user = useContext(UserContext);
 
   if (!user) {
@@ -43,7 +44,7 @@ function Routes({ handleSave, updated, setUpdated}) {
   return (
     <Switch className="Routes">
       <Route exact path="/profile">
-        <ProfileForm handleSave={handleSave} updated={updated} setUpdated={setUpdated}/>
+        <ProfileForm handleSave={handleSave} />
       </Route>
       <Route exact path="/companies">
         <ListWithSearch listType={LIST_TYPE_COMPANIES} />

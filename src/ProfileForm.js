@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import UserContext from './userContext';
 import ErrorContext from './errorContext';
+import UpdateContext from './updateContext';
 import { UPDATE_METHOD } from "./constants";
 import Alert from "./Alert";
 
@@ -8,25 +9,29 @@ import Alert from "./Alert";
  * 
  * props:
  * - handleSave: function
- * - error: string
  * 
  * state:
  * - formData
  * 
  * context:
  * - user: UserContext
+ * - error: ErrorContext
+ * - update: UpdateContext
+ * 
  * 
  * Routes -> ProfileForm
  */
-function ProfileForm({ handleSave, updated, setUpdated }) {
+function ProfileForm({ handleSave }) {
   const currentUser = useContext(UserContext);
   const error = useContext(ErrorContext);
+  const updatedObj = useContext(UpdateContext);
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     password: currentUser.password,
     email: currentUser.email,
   });
+  
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -45,9 +50,9 @@ function ProfileForm({ handleSave, updated, setUpdated }) {
 
   useEffect(function clearMessageOnUnmount() {
     return function unmount() {
-      setUpdated(false);
+      updatedObj.setUpdated(false);
     }
-  }, [setUpdated])
+  }, [updatedObj])
 
   return (
     <form onSubmit={handleSubmit} className="ProfileForm container mt-3">
@@ -95,7 +100,7 @@ function ProfileForm({ handleSave, updated, setUpdated }) {
           :
           null
         }
-        {updated
+        {updatedObj.updated
           ?
           <Alert message="Successfully Updated" type="success" />
           :

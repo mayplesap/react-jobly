@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import JoblyApi from "./api";
 import UserContext from "./userContext";
 import ErrorContext from "./errorContext";
+import UpdateContext from "./updateContext";
 import './App.css';
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import { LOGIN_METHOD, SIGNUP_METHOD, UPDATE_METHOD, } from "./constants";
@@ -38,7 +39,7 @@ function App() {
    * 
    * sets isLoading
    */
-  async function save(data, method){
+  async function save(data, method) {
     setIsLoading(true);
 
     if (method === SIGNUP_METHOD) {
@@ -49,9 +50,9 @@ function App() {
       await update(data);
     }
     setIsLoading(false);
-    
+
   }
-  
+
   /** loginUser - calls Api 
    * if correct info
    * - sets localStorage
@@ -84,13 +85,13 @@ function App() {
    * - setsError
    */
   async function signup(data) {
-    try{
+    try {
       let user = await JoblyApi.register(data);
       localStorage.setItem("token", JoblyApi.token);
       setCurrentUser(user);
       setError(null);
       history.push("/companies");
-    } catch(err) {
+    } catch (err) {
       setError(err);
       setCurrentUser(null);
     }
@@ -104,12 +105,12 @@ function App() {
    * - setsError
    */
   async function update(data) {
-    try{
+    try {
       let user = await JoblyApi.update(data, currentUser.username);
       setError(null);
       setCurrentUser(user);
       setUpdated(true);
-    } catch(err) {
+    } catch (err) {
       setError(err);
     }
   }
@@ -134,14 +135,14 @@ function App() {
 
   return (
     <div className="App">
-      
-        <UserContext.Provider value={currentUser}>
-          <ErrorContext.Provider value={error}>
+      <UserContext.Provider value={currentUser}>
+        <ErrorContext.Provider value={error}>
+          <UpdateContext.Provider value={{ updated, setUpdated }}>
             <Navbar currentUser={currentUser} token={JoblyApi.token} logout={logout} />
-            <Routes handleSave={save} token={JoblyApi.token} updated={updated} setUpdated={setUpdated}/>
-          </ErrorContext.Provider>
-        </UserContext.Provider>
-      
+            <Routes handleSave={save} token={JoblyApi.token}/>
+          </UpdateContext.Provider>
+        </ErrorContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

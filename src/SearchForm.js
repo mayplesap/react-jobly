@@ -8,7 +8,7 @@ import { useState } from "react";
  * Jobly -> SearchForm
  */
 function SearchForm({ handleSearch }){
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({search:""});
 
   function handleChange(evt){
     const {name, value} = evt.target;
@@ -23,7 +23,7 @@ function SearchForm({ handleSearch }){
   function handleSubmit(evt){
     evt.preventDefault();
     handleSearch(formData["search"]);
-    setFormData({});
+    setFormData({search:""});
   }
 
   return (
